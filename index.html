@@ -1,0 +1,156 @@
+<html>
+
+<head><link rel="icon" href="http://clipart-library.com/img/1957012.png" type="image/gif" sizes="16x16">
+
+    <title>En/De-crypt</title>
+    <script>
+        /*global $, console*/
+
+$(function () {
+    "use strict";
+    
+    var maxText = $("textarea").attr("maxlength"),
+        
+        ourMessage = $(".message");
+    
+    ourMessage.html('<span>' + maxText + '</span> Characters Remaining');
+    
+    $("textarea").keydown(function () {
+       
+        var textLength = $(this).val().length,
+            
+            remText = maxText - textLength;
+        
+        ourMessage.html('<span>' + remText + '</span> Characters Remaining');
+        
+    });
+
+
+     $("textarea").keyup(function () {
+       
+        var textLength = $(this).val().length,
+            
+            remText = maxText - textLength;
+        
+        ourMessage.html('<span>' + remText + '</span> Characters Remaining');
+        
+    });
+
+});
+    </script>
+    
+    
+<style>html,
+body{
+  width:100%;height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:#4caf50;
+  font-family:'Montserrat Alternates'
+}
+
+textarea{
+  padding:10px;
+  margin: 0 auto 10px; 
+  border:none ;font-size:20px;
+  font-family:'Montserrat Alternates';
+  border-radius:10px;outline:none;
+  transition: box-shadow .3s ease
+}
+
+textarea:-ms-input-placeholder {color: #13e723}
+textarea::-moz-placeholder {color: #13e723}
+textarea::-webkit-input-placeholder {color: #13e723}
+
+textarea:focus{2px solid #2d303a91}
+textarea:focus,
+textarea:hover{box-shadow:0px 0px 13px 0px #059403}</style>
+<script>
+        
+  /* code by webdevtrick ( https://webdevtrick.com ) */
+var webdevencrypt = {
+    setEncrypt: function(source,destination,passcode) {
+        document.getElementById(destination).innerText = this.encryptCodes(document.getElementById(source).value,document.getElementById(passcode).value);
+    },
+    setDecrypt: function() {
+             document.getElementById('field5').value =
+                
+                
+                
+                this.decryptCodes(document.getElementById('field2').value,document.getElementById('passcode').value);
+                   
+        
+    },
+    encryptCodes: function(content,passcode) {
+        var result = []; var passLen = passcode.length ;
+        for(var i = 0  ; i < content.length ; i++) {
+            var passOffset = i%passLen ;
+            var calAscii = (content.charCodeAt(i)+passcode.charCodeAt(passOffset));
+            result.push(calAscii);
+        }
+        return JSON.stringify(result) ;
+    },
+    decryptCodes: function(content,passcode) {
+        var result = [];var str = '';
+        var codesArr = JSON.parse(content);var passLen = passcode.length ;
+        for(var i = 0  ; i < codesArr.length ; i++) {
+            var passOffset = i%passLen ;
+            var calAscii = (codesArr[i]-passcode.charCodeAt(passOffset));
+            result.push(calAscii) ;
+        }
+        for(var i = 0 ; i < result.length ; i++) {
+            var ch = String.fromCharCode(result[i]); str += ch ;
+        }
+        return str ;
+    }
+}      
+        
+        
+    </script>
+
+ <script>
+     function change(){
+    document.getElementById('field2').value=document.getElementById('field4').value  ;  
+         
+         
+     }
+     
+ </script>
+</head>
+
+<body>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Montserrat+Subrayada|Ranga&display=swap" rel="stylesheet">  
+<table>
+
+    <tr>
+
+
+    <th>     <textarea id="originalContent" placeholder="Encrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode')" cols="30"></textarea>
+</th>
+    <th></th>
+    <th>     <textarea id="field2" placeholder="Decrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setDecrypt('field2','field5','passcode')"  cols="30"></textarea>
+</th>
+    </tr>    
+    
+    <tr>
+     <th></th>
+     <th>     <textarea id="passcode" placeholder="Password" maxlength="3000" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode'); webdevencrypt.setDecrypt('field2','field5','passcode')"  rows="1" cols="30"></textarea>
+</th>
+     <th></th>
+    </tr>
+    
+    
+    <tr>
+     <th>     <textarea id="field4" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
+</th>
+     <th></th>
+     <th>     <textarea id="field5" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
+</th>
+    </tr>    
+</table>
+
+  
+  </body></html>
