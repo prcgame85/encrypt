@@ -32,7 +32,7 @@ $(function () {
             
             remText = maxText - textLength;
         
-        ourMessage.html('<span>' + remText + '</span> Characters Remaining');
+        ourMessage.html('<span>'  + remText + '</span> Characters Remaining');
         
     });
 
@@ -128,10 +128,10 @@ var webdevencrypt = {
     <tr>
 
 
-    <th>     <textarea id="originalContent" placeholder="Encrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode')" cols="30"></textarea>
+    <th>     <textarea id="originalContent" style="margin-left:20%" placeholder="Encrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode')" cols="30"></textarea>
 </th>
     <th></th>
-    <th>     <textarea id="field2" placeholder="Decrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setDecrypt('field2','field5','passcode')"  cols="30"></textarea>
+    <th>     <textarea id="field2" placeholder="Decrypt" style="margin-right:20%" maxlength="3000" rows="6" onChange="webdevencrypt.setDecrypt('field2','field5','passcode')"  cols="30"></textarea>
 </th>
     </tr>    
     
@@ -144,10 +144,10 @@ var webdevencrypt = {
     
     
     <tr>
-     <th>     <textarea id="field4" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
+     <th>     <textarea id="field4" style="margin-left:20%" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
 </th>
      <th></th>
-     <th>     <textarea id="field5" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
+     <th>     <textarea id="field5" style="margin-right:20%" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
 </th>
     </tr>    
 </table>
