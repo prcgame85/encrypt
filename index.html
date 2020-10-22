@@ -1,73 +1,97 @@
+
+<!DOCTYPE html>
+<!-- code by webdevtrick ( https://webdevtrick.com ) -->
 <html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head><link rel="icon" href="http://clipart-library.com/img/1957012.png" type="image/gif" sizes="16x16">
+<style>/* code by webdevtrick ( https://webdevtrick.com ) */
+body {
+    background-color: #e8eaed;
+}
+.f15pt {
+    font-size: 15pt;
+}
+.content {
+    background: #610bb1;
+    padding: 10px;
+    font-size: 15pt;
+    color: #fefefe;
+    width: 100%;
+}
+.voilet0 {
+    background-color: #333;
+}
+.voilet1 {
+    background-color: red;
+}
+.voilet2 {
+    background-color: #333;
+}
+textarea {
+    width: 100%;
+    min-height: 100px;
+}
+.encrypt {
+    font-size: 24pt;
+    background-color: red;
+    border-radius: 3px;
+    border: 1px solid #6d0202;
+    color: #ffffff;
+    padding: 7px;
+    margin: 5px;
+    float: right;
+}
+.encrypt:hover {
+    background-color: #333;
+}
 
-    <title>En/De-crypt</title>
+.center {
+    width: 70%;
+    margin: auto;
+}
+#passcode {
+    border-radius: 3px;
+    padding: 6px;
+    border: 0px;
+    outline: none;
+}
+#passcode:focus {
+    border: 2px solid #530c96;
+}
+.top-relative {
+    top: 50px;
+    position: relative;
+}
+.top-bar {
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    background-color: #fefefe;
+	padding: 5px;
+	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.ablock {
+	text-decoration: none;
+    color: #7c0abe;
+    font-size: 15pt;
+}
+.h35px {
+	height: 35px;
+}
+.txtbld {
+    font-weight: bold;
+}
+.prb12px {
+	position: relative;
+	bottom: 10px;
+}
+.w35px {
+	width: 35px;
+}</style>
     <script>
-        /*global $, console*/
-
-$(function () {
-    "use strict";
-    
-    var maxText = $("textarea").attr("maxlength"),
-        
-        ourMessage = $(".message");
-    
-    ourMessage.html('<span>' + maxText + '</span> Characters Remaining');
-    
-    $("textarea").keydown(function () {
-       
-        var textLength = $(this).val().length,
-            
-            remText = maxText - textLength;
-        
-        ourMessage.html('<span>' + remText + '</span> Characters Remaining');
-        
-    });
-
-
-     $("textarea").keyup(function () {
-       
-        var textLength = $(this).val().length,
-            
-            remText = maxText - textLength;
-        
-        ourMessage.html('<span>' + remText + '</span> Characters Remaining');
-        
-    });
-
-});
-    </script>
-    
-    
-<style>html,
-body{
-  width:100%;height:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-  background:#4caf50;
-  font-family:'Montserrat Alternates'
-}
-
-textarea{
-  padding:10px;
-  margin: 0 auto 10px; 
-  border:none ;font-size:20px;
-  font-family:'Montserrat Alternates';
-  border-radius:10px;outline:none;
-  transition: box-shadow .3s ease
-}
-
-textarea:-ms-input-placeholder {color: #13e723}
-textarea::-moz-placeholder {color: #13e723}
-textarea::-webkit-input-placeholder {color: #13e723}
-
-textarea:focus{2px solid #2d303a91}
-textarea:focus,
-textarea:hover{box-shadow:0px 0px 13px 0px #059403}</style>
-<script>
         
   /* code by webdevtrick ( https://webdevtrick.com ) */
 var webdevencrypt = {
@@ -75,13 +99,7 @@ var webdevencrypt = {
         document.getElementById(destination).innerText = this.encryptCodes(document.getElementById(source).value,document.getElementById(passcode).value);
     },
     setDecrypt: function() {
-             document.getElementById('field5').value =
-                
-                
-                
-                this.decryptCodes(document.getElementById('field2').value,document.getElementById('passcode').value);
-                   
-        
+                document.getElementById('decryptedContent').innerText = this.decryptCodes(document.getElementById('originalContent').value,document.getElementById('passcode').value);
     },
     encryptCodes: function(content,passcode) {
         var result = []; var passLen = passcode.length ;
@@ -109,48 +127,29 @@ var webdevencrypt = {
         
         
     </script>
-
- <script>
-     function change(){
-    document.getElementById('field2').value=document.getElementById('field4').value  ;  
-         
-         
-     }
-     
- </script>
 </head>
-
 <body>
-
-<link href="https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Alternates|Montserrat+Subrayada|Ranga&display=swap" rel="stylesheet">  
-<table>
-
-    <tr>
-
-
-    <th>     <textarea id="originalContent" style="margin-left:20%" placeholder="Encrypt" maxlength="3000" rows="6" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode')" cols="30"></textarea>
-</th>
-    <th></th>
-    <th>     <textarea id="field2" placeholder="Decrypt" style="margin-right:20%" maxlength="3000" rows="6" onChange="webdevencrypt.setDecrypt('field2','field5','passcode')"  cols="30"></textarea>
-</th>
-    </tr>    
     
-    <tr>
-     <th></th>
-     <th>     <textarea id="passcode" placeholder="Password" maxlength="3000" onChange="webdevencrypt.setEncrypt('originalContent','field4','passcode'); webdevencrypt.setDecrypt('field2','field5','passcode')"  rows="1" cols="30"></textarea>
-</th>
-     <th></th>
-    </tr>
-    
-    
-    <tr>
-     <th>     <textarea id="field4" style="margin-left:20%" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
-</th>
-     <th></th>
-     <th>     <textarea id="field5" style="margin-right:20%" readonly ="true" maxlength="3000" rows="6" cols="30"></textarea>
-</th>
-    </tr>    
-</table>
+    <div class="center top-relative">
+        <div class="content voilet1">
+            <span>Enter Password for Encryption</span>
+            <input class="f15pt" type="password" id="passcode" placeholder="password" />
+        </div>
+        <div class="content voilet2">
+            <span>Put Or Type Text Here</span>
+            <textarea id="originalContent"></textarea>
+        </div>
+        <div class="content voilet0">
+            <span>Encrypted Form</span>
+            <textarea id="encryptedContent" readonly></textarea>
+        </div>
+        <div class="content voilet0">
+            <span>Decrypted Form</span>
+            <textarea id="decryptedContent" readonly></textarea>
+        </div>
+        <button class="encrypt" onclick="webdevencrypt.setEncrypt('originalContent','encryptedContent','passcode')">Encrypt</button>
+        <button class="encrypt" onclick="webdevencrypt.setDecrypt('originalContent','decryptedContent','passcode')">Decrypt</button>
+    </div>
+</body>
 
-  
-  </body></html>
+</html>
